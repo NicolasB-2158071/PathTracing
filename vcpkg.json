@@ -1,0 +1,10 @@
+{
+  "dependencies": [
+    "glad",
+    "glfw3",
+    "glm",
+    "spdlog",
+    "tinyobjloader",
+    "jsoncpp"
+  ]
+}

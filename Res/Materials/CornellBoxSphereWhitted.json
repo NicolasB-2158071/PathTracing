@@ -1,0 +1,48 @@
+{
+  "leftWall": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.63, 0.065, 0.05 ]
+  },
+  "rightWall": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.14, 0.45, 0.091 ]
+  },
+  "floor": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.725, 0.71, 0.68 ]
+  },
+  "ceiling": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.725, 0.71, 0.68 ]
+  },
+  "backWall": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.725, 0.71, 0.68 ]
+  },
+  "leftSphere": {
+    "BxDF": "ConductorBxDF",
+    "eta": [ 1.0691, 1.1224, 1.2229 ],
+    "k": [ 5.4952, 4.8741, 4.1078 ],
+    "alphaX": 0.000001,
+    "alphaY": 0.000001
+  },
+  "rightSphere": {
+    "BxDF": "DielectricBxDF",
+    "eta": 2.5,
+    "alphaX": 0.000001,
+    "alphaY": 0.000001
+  },
+  "ceilingLight": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 1.0, 1.0, 1.0 ]
+  },
+  "pointLights": {
+    "ceilingLight": {
+      "radiance": [ 5.0, 5.0, 5.0 ],
+      "pos": [ 0.0000, 1.000, -0.1 ]
+    }
+  },
+  "camera": {
+    "coordinates": [ 0.0, 0.8, 2.1 ]
+  }
+}

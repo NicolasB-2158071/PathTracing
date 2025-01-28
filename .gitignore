@@ -1,0 +1,5 @@
+build/*
+.vs/*
+/.idea
+/cmake-build-debug
+/lib/embree-4.3.3.x64.windows
