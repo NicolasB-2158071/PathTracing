@@ -1,6 +1,6 @@
 ## Install
 
-[vcpkg](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration) is used for the majority dependencies with the exception of Embree4:
+[vcpkg](https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration) is used for the majority of dependencies with the exception of Embree4:
 
 1. Install the platform depended executables, found [here](https://github.com/RenderKit/embree/releases)
 
