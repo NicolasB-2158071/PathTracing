@@ -45,6 +45,13 @@ BxDFSample PhongBRDF::SampleF(float u, const glm::vec2& uv, const glm::vec3& wo,
 	}
 }
 
+float PhongBRDF::PDF(const glm::vec3& wo, const glm::vec3& wi, const SurfaceIntersection& si) const {
+	glm::vec3 refl{ glm::reflect(-wo, si.normal) };
+	float sPdf{ CosineLobeHemispherePdf(glm::abs(glm::dot(wi, refl)), m_shininess) * m_ps };
+	float dPdf{ CosineHemispherePdf(glm::abs(glm::dot(wi, si.normal))) * m_pd };
+	return sPdf + dPdf;
+}
+
 glm::vec3 PhongBRDF::GetDiffuseComponent() const {
 	return m_rhoDiffuse * std::numbers::inv_pi_v<float>;
 }

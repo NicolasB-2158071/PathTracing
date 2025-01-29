@@ -19,19 +19,20 @@ glm::vec3 IndirectIlluminationIntegrator::EvaluateSample(RTCRayHit& ray, int dep
 				L += beta * si.shape->areaLight->Le();
 				break; // Skip if it's an emitter
 			}
-			float wB{ PowerHeuristic(pB, pL) };
-			L += wB * beta * si.shape->areaLight->Le();
+			//float wB{ PowerHeuristic(pB, m_lightSampler.Pmf() * si.shape->areaLight->LiPDF()) };
+			//L += wB * beta * si.shape->areaLight->Le();
 		}
 
 		LiSample li{ m_lightSampler.Sample(m_sampler.GetUV1D())->SampleLi(si, m_sampler.GetUV2D()) };
 		BxDFSample bs{ si.shape->bxdf->SampleF(m_sampler.GetUV1D(), m_sampler.GetUV2D(), wo, si) };
-		pB = bs.pdf;
 		pL = li.pdf * m_lightSampler.Pmf();
 		if (V(si.pos, li.y)) {
-			float wL{ PowerHeuristic(pL, pB) };
-			float g = G(si.pos, si.normal, li.y, li.normal);
-			L += wL * beta * si.shape->bxdf->F(wo, glm::normalize(li.y - si.pos), si) * g * li.l / pL;
+			glm::vec3 wi{ glm::normalize(li.y - si.pos) };
+			//float wL{ PowerHeuristic(pL, si.shape->bxdf->PDF(wo, wi, si)) };
+			float g{ G(si.pos, si.normal, li.y, li.normal) };
+			L += /*wL **/ beta * si.shape->bxdf->F(wo, wi, si) * g * li.l / pL;
 		}
+		//pB = bs.pdf;
 		beta *= bs.f * glm::abs(glm::dot(bs.wi, si.normal)) / bs.pdf;
 
 		float maxComponent{ glm::max(beta.x, glm::max(beta.y, beta.z)) };

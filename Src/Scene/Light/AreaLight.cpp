@@ -15,6 +15,10 @@ LiSample AreaLight::SampleLi(const SurfaceIntersection& si, const glm::vec2& u) 
 	return li;
 }
 
+float AreaLight::LiPDF() const {
+	return 1.0f / m_shape.GetArea();
+}
+
 glm::vec3 AreaLight::Le() const {
 	return m_radiance / ((m_twoSided ? 2.0f : 1.0f) * m_shape.GetArea());
 }

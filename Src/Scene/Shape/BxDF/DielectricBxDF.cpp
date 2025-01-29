@@ -80,3 +80,34 @@ BxDFSample DielectricBxDF::SampleF(float u, const glm::vec2& uv, const glm::vec3
 	}
 
 }
+
+float DielectricBxDF::PDF(const glm::vec3& wo, const glm::vec3& wi, const SurfaceIntersection& si) const {
+	if (m_eta == 1.0f || m_ggx.IsSmooth()) { return 0.0f; }
+
+	glm::vec3 localWo{ ToLocal(wo, si.normal) }, localWi{ ToLocal(wi, si.normal) };
+	float cosThetaO{ glm::abs(localWo.z) }, cosThetaI{ glm::abs(wi.z) };
+	if (cosThetaO == 0 || cosThetaI == 0) { return {}; }
+
+	bool reflect{ cosThetaO * cosThetaI > 0.0f };
+	float etap{ 1.0f }; // If reflection -> no changes calculation halfway vector
+	if (!reflect) {
+		etap = cosThetaO < 0.0f ? (1.0f / m_eta) : m_eta;
+	}
+	glm::vec3 wm{ localWi * etap + localWo };
+	if (glm::length(wm) == 0.0f) { return {}; }
+	wm = glm::normalize(wm);
+	wm = wm.z < 0.0f ? -wm : wm; // Local space
+
+	if (glm::dot(wm, localWi) * cosThetaI < 0.0f || glm::dot(wm, localWo) * cosThetaO < 0.0f) { return {}; }
+
+	float fr{ FresnelDielectric(wm, localWo, m_eta) }, tr{ 1.0f - fr };
+	if (reflect) {
+		return m_ggx.D(localWo, wm) / (4.0f * glm::abs(glm::dot(localWo, wm))) * fr / (fr + tr);
+	}
+	else {
+		float denom{ glm::dot(localWi, wm) + glm::dot(localWo, wm) / etap }; denom *= denom;
+		float absCosWiWm{ glm::abs(glm::dot(localWi, wm)) };
+		float absCosWoWm{ glm::abs(glm::dot(localWo, wm)) };
+		return m_ggx.D(localWo, wm) * absCosWiWm / denom * tr / (fr + tr);
+	}
+}

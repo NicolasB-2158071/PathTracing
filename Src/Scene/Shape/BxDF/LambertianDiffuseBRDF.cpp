@@ -21,3 +21,7 @@ BxDFSample LambertianDiffuseBRDF::SampleF(float u, const glm::vec2& uv, const gl
 		BxDFType::DIFFUSE
 	};
 }
+
+float LambertianDiffuseBRDF::PDF(const glm::vec3& wo, const glm::vec3& wi, const SurfaceIntersection& si) const {
+	return CosineHemispherePdf(glm::abs(glm::dot(wi, si.normal)));
+}

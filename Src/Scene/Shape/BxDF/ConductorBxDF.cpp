@@ -38,3 +38,15 @@ BxDFSample ConductorBxDF::SampleF(float u, const glm::vec2& uv, const glm::vec3&
 	glm::vec3 f{ m_ggx.D(wm) * FresnelConductor(wm, localWo, m_eta, m_k) * m_ggx.G(localWo, wi) / (4.0f * cosThetaO * cosThetaI) };
 	return BxDFSample{ f, FromLocal(wi, si.normal), pdf, BxDFType::GLOSSY };
 }
+
+float ConductorBxDF::PDF(const glm::vec3& wo, const glm::vec3& wi, const SurfaceIntersection& si) const {
+	if (m_ggx.IsSmooth()) { return 0.0f; }
+	
+	glm::vec3 localWo{ ToLocal(wo, si.normal) }, localWi{ ToLocal(wi, si.normal) };
+	glm::vec3 wm{ localWo + localWi };
+	if (glm::length(wm) == 0.0f) { return 0.0f; }
+
+	wm = glm::normalize(wm);
+	wm = wm.z < 0.0f ? -wm : wm;
+	return m_ggx.D(localWo, wm) / (4.0f * glm::abs(glm::dot(localWo, wm)));
+}

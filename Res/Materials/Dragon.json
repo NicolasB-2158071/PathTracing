@@ -32,7 +32,7 @@
   "areaLights": {
     "ceilingLight": {
       "radiance": [ 50.0, 50.0, 50.0 ],
-      "pos": [ 0.0, 1.96, 0.0 ]
+      "twoSided": false
     }
   },
   "camera": {

@@ -25,6 +25,7 @@ class BxDF {
 public:
 	virtual glm::vec3 F(const glm::vec3& wo, const glm::vec3& wi, const SurfaceIntersection& si) const = 0;
 	virtual BxDFSample SampleF(float u, const glm::vec2& uv, const glm::vec3& wo, const SurfaceIntersection& si) const = 0;
+	virtual float PDF(const glm::vec3& wo, const glm::vec3& wi, const SurfaceIntersection& si) const = 0;
 
 	static std::unique_ptr<BxDF> CreateFromMaterial(const Json::Value& mat);
 };
