@@ -1,0 +1,67 @@
+{
+  "floor": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.01, 0.01, 0.01 ]
+  },
+  "plate1": {
+    "BxDF": "BlinnPhongBRDF",
+    "diffuse": [ 0.0175, 0.0225, 0.0325 ],
+    "specular": [ 0.9, 0.9, 0.9 ],
+    "shininess": 100000.0
+  },
+  "plate2": {
+    "BxDF": "BlinnPhongBRDF",
+    "diffuse": [ 0.0175, 0.0225, 0.0325 ],
+    "specular": [ 0.9, 0.9, 0.9 ],
+    "shininess": 10000.0
+  },
+  "plate3": {
+    "BxDF": "BlinnPhongBRDF",
+    "diffuse": [ 0.0175, 0.0225, 0.0325 ],
+    "specular": [ 0.9, 0.9, 0.9 ],
+    "shininess": 1000.0
+  },
+  "plate4": {
+    "BxDF": "BlinnPhongBRDF",
+    "diffuse": [ 0.0175, 0.0225, 0.0325 ],
+    "specular": [ 0.9, 0.9, 0.9 ],
+    "shininess": 100.0
+  },
+  "sphere0": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.725, 0.71, 0.68 ]
+  },
+  "sphere1": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.725, 0.71, 0.68 ]
+  },
+  "sphere2": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.725, 0.71, 0.68 ]
+  },
+  "sphere3": {
+    "BxDF": "LambertianDiffuseBRDF",
+    "diffuse": [ 0.725, 0.71, 0.68 ]
+  },
+  "areaLights": {
+    "sphere0": {
+      "radiance": [ 1.23457, 1.23457, 1.23457 ],
+      "twoSided": false
+    },
+    "sphere1": {
+      "radiance": [ 11.1111, 11.1111, 11.1111 ],
+      "twoSided": false
+    },
+    "sphere2": {
+      "radiance": [ 100, 100, 100 ],
+      "twoSided": false
+    },
+    "sphere3": {
+      "radiance": [ 901.803, 901.803, 901.803 ],
+      "twoSided": false
+    }
+  },
+  "camera": {
+    "coordinates": [ 0.0, 0.0, 10.0 ]
+  }
+}

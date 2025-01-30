@@ -45,7 +45,7 @@ BxDFSample BlinnPhongBRDF::SampleF(float u, const glm::vec2& uv, const glm::vec3
 }
 
 float BlinnPhongBRDF::PDF(const glm::vec3& wo, const glm::vec3& wi, const SurfaceIntersection& si) const {
-	glm::vec3 h{ wo + wi };
+	glm::vec3 h{ glm::normalize(wo + wi) };
 	float sPdf{ CosineLobeHemispherePdf(glm::abs(glm::dot(h, si.normal)), m_shininess) * m_ps };
 	float dPdf{ CosineHemispherePdf(glm::abs(glm::dot(wi, si.normal))) * m_pd };
 	return sPdf + dPdf;
