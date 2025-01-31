@@ -4,7 +4,9 @@
 
 1. Install the platform depended executables, found [here](https://github.com/RenderKit/embree/releases)
 
-2. Place the entire unzipped folder in the **Lib** directory 
+2. Place the entire unzipped folder in the **Lib** directory
+
+3. Change the location in CMakeLists.txt
 
 ## Usage
 
