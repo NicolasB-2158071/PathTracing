@@ -7,7 +7,7 @@ LiSample PointLight::SampleLi(const SurfaceIntersection& si, const glm::vec2& u)
 	return LiSample{Le(), m_pos, glm::normalize(m_pos - si.pos), 1.0f};
 }
 
-float PointLight::LiPDF() const {
+float PointLight::LiPDF(const SurfaceIntersection& si, const SurfaceIntersection& prevSi) const {
 	return 1.0f;
 }
 

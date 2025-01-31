@@ -19,7 +19,7 @@ enum class LightType {
 class Light {
 public:
 	virtual LiSample SampleLi(const SurfaceIntersection& si, const glm::vec2& u) const = 0;
-	virtual float LiPDF() const = 0;
+	virtual float LiPDF(const SurfaceIntersection& si, const SurfaceIntersection& prevSi) const = 0;
 	virtual glm::vec3 Le() const = 0;
 	virtual LightType GetType() const = 0;
 

@@ -15,8 +15,10 @@ LiSample AreaLight::SampleLi(const SurfaceIntersection& si, const glm::vec2& u) 
 	return li;
 }
 
-float AreaLight::LiPDF() const {
-	return 1.0f / m_shape.GetArea();
+float AreaLight::LiPDF(const SurfaceIntersection& si, const SurfaceIntersection& prevSi) const {
+	glm::vec3 wi{ glm::normalize(prevSi.pos - si.pos) };
+	float dist{ glm::length(wi) };
+	return (1.0f / m_shape.GetArea()) / (glm::abs(glm::dot(si.normal, -wi) / (dist * dist)));
 }
 
 glm::vec3 AreaLight::Le() const {

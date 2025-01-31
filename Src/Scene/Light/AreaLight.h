@@ -9,7 +9,7 @@ public:
 	AreaLight(const Shape& shape, const glm::vec3& radiance, bool twoSided);
 
 	LiSample SampleLi(const SurfaceIntersection& si, const glm::vec2& u) const override; // Uniform
-	float LiPDF() const override;
+	float LiPDF(const SurfaceIntersection& si, const SurfaceIntersection& prevSi) const override;
 	glm::vec3 Le() const override;
 	LightType GetType() const override;
 

@@ -7,7 +7,7 @@ public:
 	PointLight(const glm::vec3& pos, const glm::vec3& radiance);
 
 	LiSample SampleLi(const SurfaceIntersection& si, const glm::vec2& u) const override;
-	float LiPDF() const override;
+	float LiPDF(const SurfaceIntersection& si, const SurfaceIntersection& prevSi) const override;
 	glm::vec3 Le() const override;
 	LightType GetType() const override;
 
